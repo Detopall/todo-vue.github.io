@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/screen.css">
+
+	<script defer src="https://unpkg.com/vue@next"></script>
+	<script defer src="assets/js/script.js"></script>
+	<title>Vue Project - Todo </title>
+</head>
+<body>
+	<header> ToDo Project Using Vue.js </header>
+
+	<main id="app">
+		<form @submit.prevent="addTodo">
+			<label for="title">Add a title</label>
+			<input ref="title" id="title" type="text" autocomplete="off" minlength="1">
+
+			<label for="description">Add a description</label>
+			<textarea ref="description" id="description" rows="5" cols="60" minlength="1" autocomplete="off"></textarea>
+
+			<button type="submit"> Add new todo </button>
+		</form>
+
+		<h3> Completed amount: {{completed}}</h3>
+		<h3> Uncompleted amount: {{uncompletedAmountOfTodos}}</h3>
+
+		<article v-if="data.length > 0">
+			<div v-for="todo in data">
+				<h3> {{todo.title}} </h3>
+				<p> {{todo.description}} </p>
+				<button class="done" @click="completeTodo(todo)"> done </button> 
+			</div>
+		</article>
+		<article v-else>
+			<h2> Congratulations you've finished all your tasks !!</h2>
+		</article>
+	</main>
+</body>
+</html>
